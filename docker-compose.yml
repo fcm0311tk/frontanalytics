@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+    app:
+        build:
+            args:
+                user: john
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        working_dir: /app
+        ports:
+            - "5000:5000"
+        volumes:
+            - ./:/app
+        networks:
+            - sindrome
+
+networks:
+    sindrome:
+        driver: bridge
